@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import generics, mixins
+from rest_framework import viewsets
 #region function based view
 @api_view(['GET','POST'])
 def TodoSerialzerView(request:Request):
@@ -106,3 +107,10 @@ class GenericDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=TodoSerializer
 #endregion
 
+#region viewset
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset=Todomodel.objects.all().order_by('priority')
+    serializer_class=TodoSerializer
+    
+
+#endrigion
