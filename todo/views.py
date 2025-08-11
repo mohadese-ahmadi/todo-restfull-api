@@ -98,7 +98,11 @@ class MixinDetailViewApi(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mix
         return self.destroy(request,pk)
 #endregion
 #region genericViews
-
+class GenericView(generics.ListCreateAPIView):
+    queryset=Todomodel.objects.all().order_by('priority')
+    serializer_class=TodoSerializer
+class GenericDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Todomodel.objects.all().order_by('priority')
+    serializer_class=TodoSerializer
 #endregion
-
 
